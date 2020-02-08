@@ -1,2 +1,56 @@
-apple orange grapes apple orange
-orange grapes apple orange
+In a paper appearing online February 6 in Science, professor of biology Paul Garrity, Ph.D. student Chloe Greppi, post-doctoral fellow Willem Laursen and several colleagues report that they've figured out an important part of how mosquitoes hone in on human warmth to find and bite people.
+Mosquitoes are one of the planet's deadliest animals. Hundreds of thousands of people die each year from such mosquito-borne illnesses as malaria, dengue, West Nile virus and yellow fever, most of them children. Another 200 million are infected and suffer the symptoms.
+
+The discovery holds out the possibility of one day being able to fool or knock-out the insects' temperature sensors so they don't spread disease.
+
+"Sensory systems like these are excellent targets for developing new ways to repel or confuse mosquitoes to keep them from biting us or to create new ways to help trap and kill these disease-spreading creatures," Garrity said.
+
+A quick history lesson
+
+At the beginning of the 20th century, Frank Milburn Howlett, a British scientist serving in India, noticed mosquitoes were always hovering around his teapot at tea-time. As an experiment, he filled a loose gauze bag with the insects and placed it near a test tube filled with hot water.
+
+When warmth from the tube reached the animals, "the effect was most interesting," he wrote in a 1910 research paper. The mosquitoes were drawn to the side of the bag closest to the rising hot air.
+
+Howlett also observed that mosquitoes didn't seem to attack cold-blooded animals, suggesting that it was body heat that drew them to humans.
+
+Other research has since shown that over distances of many feet, mosquitoes rely on the carbon dioxide we exhale, the odors we give off, and visual cues to find us. But when they get within a few inches, it's our bodies' temperature that plays a major role in guiding them.
+
+Only the females of the species behave this way. As was later learned, they use the protein in our blood to nourish their eggs. Males sup only on fruit and plant nectar.
+
+Heat-seeking or cool-avoiding?
+
+Last year, Garrity and several colleagues published a paper in the journal Neuron that upended the conventional thinking about the temperature-sensing receptors at the tip of flies' antennas.
+
+Traditionally, these receptors were thought to act like thermometers, taking the temperature of the surroundings to let the fly know if the environment is hot or cold. Instead, Garrity and his colleagues found that the receptors only detected whether the temperature was changing, letting the fly know if things were getting hotter or colder.
+
+For this reason, Garrity renamed these temperature sensors the Cooling Cells and Heating Cells. They're so sensitive they can detect a few hundredths of a degree change in temperature per second.
+
+Mosquitoes, who are close evolutionary relatives of flies, also have Cooling Cells and Heating Cells.
+
+While it would seem to make sense to look at the insects' heating cells to understand what draws them to human warmth, Garrity's group considered an alternative —- and counterintuitive —- hypothesis. Maybe it wasn't that the insects were flying toward the heat; maybe they were flying away from the cold. This would mean the Cooling Cells would be the ones to focus on.
+
+The specific Cooling Cells Garrity and his fellow scientists studied for their paper in Science rely on a molecular receptor called IR21a. IR stands for ionotropic receptor, a group of proteins that help neurons to transmit signals. IR21a facilitates the transmission of a signal that the temperature around the insect is falling.
+
+How they did it
+
+In their experiment, the researchers knocked out the mosquito gene responsible for producing the IR21a receptor. They then placed about 60 of the mutant insects into a shoebox-sized container with a plate on its back wall heated to near core body temperature, 98.6 degrees, and gave the mosquitoes a puff of carbon dioxide to mimic human breath.
+
+While non-mutant mosquitoes rapidly congregated on the body temperature plate, trying to feed, the mutant mosquitoes largely ignored the plate. Without the IR21a receptor, they could no longer direct themselves to the hottest spot in their vicinity.
+
+In a second experiment, the mosquitoes were placed in a small mesh cage. Above the cage, the researchers placed two vials full of human blood, with one heated to 73 degrees (room temperature) and the other to 88 degrees (the surface temperature of a human hand). Compared to non-mutant mosquitoes run through the same setup, the mutants showed a reduced preference for the 88-degree blood.
+
+"Is the world getting better or are things getting worse?"
+
+According to Garrity, the IR21a receptor is activated whenever mosquitoes move toward a cooler temperature. Since humans are usually warmer than their surroundings, this means that as a mosquito is approaching a human, IR21a is silent. But if the animal should deviate from its course and start to move away from its warm-blooded prey, IR21a becomes activated, only shutting off once the insect course-corrects.
+
+Ultimately tracking temperature change is extremely useful in helping these animals determine precisely where to bite us because blood vessels are the warmest spot on our skin.
+
+Garrity said IR21a seems to act like "an annoying alarm. It goes off whenever the female mosquito heads towards cooler climes. When they are seeking humans, they seem to be driven to do whatever it takes to turn down the sound."
+
+How it all began
+
+The gene for IR21 originated in a marine creature that lived over 400 million years ago and eventually gave rise to both modern crustaceans (like lobsters and crabs) and insects.
+
+Once the ancestors of the modern insects finally ventured onto land, the gene was passed on to the common ancestor of both flies and mosquitoes. When the evolutionary trajectories of these insects diverged some 200 million years ago, each species developed different uses for the IR21a receptor. Flies use it to avoid warmth, mosquitoes to find warmth and feed on human blood.
+
+The other authors of the study are: Gonzalo Budelli, Elaine C. Chang, Abigail M. Daniels '19 and Lena van Giesen of Brandeis; and Andrea L. Smidler and Flaminia Catteruccia of the Harvard T.H. Chan School of Public Health.

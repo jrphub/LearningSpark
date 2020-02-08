@@ -67,7 +67,7 @@ public class WordCountLocal {
         // All spark job needs file:// or hdfs:// prefix to distinguish between
         // local and cluster
         flat_words_reduced
-                .saveAsTextFile("file://output/wordcountLocalOutput_" + System.currentTimeMillis());
+                .saveAsTextFile("output/WordCountLocal_" + System.currentTimeMillis());
 
 
         jsc.close();
