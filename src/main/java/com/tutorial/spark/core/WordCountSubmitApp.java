@@ -12,6 +12,9 @@ import scala.Tuple2;
 import java.util.Arrays;
 import java.util.Objects;
 
+/*
+spark-submit --class com.tutorial.spark.core.WordCountSubmitApp --master local[*] --executor-memory 2g LearningSpark-1.0-SNAPSHOT.jar /home/huser/learning-spark/wordcount/words.txt /home/huser/learning-spark/wordcount/output/wordcount
+ */
 public class WordCountSubmitApp {
     public static void main(String[] args) {
         String appName="WordCountSubmitApp";
