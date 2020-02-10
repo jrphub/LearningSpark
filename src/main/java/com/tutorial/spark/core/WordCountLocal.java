@@ -49,6 +49,7 @@ public class WordCountLocal {
                 .mapToPair(new PairFunction<String, String, Long>() {
                     public Tuple2<String, Long> call(String flat_word)
                             throws Exception {
+                        String var="hello";
                         return new Tuple2<String, Long>(flat_word, 1L);
                     }
                 });
