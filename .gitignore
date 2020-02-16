@@ -3,3 +3,5 @@ target/
 *.iml
 logs/
 derby.log
+output/
+spark-warehouse/
