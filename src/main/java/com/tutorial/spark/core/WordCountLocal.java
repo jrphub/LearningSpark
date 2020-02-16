@@ -34,6 +34,8 @@ public class WordCountLocal {
         //apple orange grapes apple orange
         JavaRDD<String> flat_words = distFile
                 .flatMap(new FlatMapFunction<String, String>() {
+                    private static final long serialVersionUID = -7303808940135307768L;
+
                     public Iterator<String> call(String line) throws Exception {
                         return Arrays.asList(line.split(" ")).iterator();
                     }
@@ -47,6 +49,8 @@ public class WordCountLocal {
         // orange 1
         JavaPairRDD<String, Long> flat_words_mapped = flat_words
                 .mapToPair(new PairFunction<String, String, Long>() {
+                    private static final long serialVersionUID = 373611082594580542L;
+
                     public Tuple2<String, Long> call(String flat_word)
                             throws Exception {
                         String var="hello";
@@ -60,6 +64,8 @@ public class WordCountLocal {
         // grapes 1
         JavaPairRDD<String, Long> flat_words_reduced = flat_words_mapped
                 .reduceByKey(new Function2<Long, Long, Long>() {
+                    private static final long serialVersionUID = -541165998462813301L;
+
                     public Long call(Long l1, Long l2) throws Exception {
                         return l1 + l2;
                     }
