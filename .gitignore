@@ -5,3 +5,4 @@ logs/
 derby.log
 output/
 spark-warehouse/
+spark-checkpoint/
