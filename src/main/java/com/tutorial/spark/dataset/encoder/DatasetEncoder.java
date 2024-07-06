@@ -6,7 +6,9 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Encoder;
 import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.types.StructField;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
@@ -25,8 +27,8 @@ public class DatasetEncoder {
 		// Create an instance of a Bean class
 		Person person = new Person();
 		person.setName("Andy");
-		person.setAge(32);
-		
+		person.setAge(32L);
+
 		// Encoders are created for Java beans
 		Encoder<Person> personEncoder = Encoders.bean(Person.class);
 		Dataset<Person> javaBeanDS = spark.createDataset(
@@ -34,7 +36,7 @@ public class DatasetEncoder {
 		  personEncoder
 		);
 		javaBeanDS.show();
-		
+
 		/*
 		+---+----+
 		|age|name|
@@ -44,11 +46,12 @@ public class DatasetEncoder {
 		*/
 
 		System.out.println("Using encoder to read json file directly:");
+		System.out.println(personEncoder.schema());
 		//A usecase : reading json directly and using personEncoder, create dataset of person
 		String inputFilePath = Objects.requireNonNull(DatasetEncoder.class.getClassLoader().getResource("people.json")).getPath();
 		Dataset<Person> peopleDS = spark.read().json(inputFilePath).as(personEncoder);
 		peopleDS.show();
-		
+
 		/*
 		+----+-------+
 		| age|   name|
@@ -58,7 +61,7 @@ public class DatasetEncoder {
 		|  19| Justin|
 		+----+-------+
 		*/
-		
+
 		// Encoders for most common types are provided in class Encoders
 		System.out.println("Using encoder for primitive types :");
 		Encoder<Integer> integerEncoder = Encoders.INT();

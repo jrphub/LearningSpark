@@ -8,6 +8,9 @@ import org.apache.spark.sql.SparkSession;
 
 import java.util.Properties;
 
+/**
+ * Need to set up mysql server
+ */
 public class DatasetJDBCMySql {
 
 	public static void main(String[] args) {
@@ -18,7 +21,7 @@ public class DatasetJDBCMySql {
 				.config(conf)
 				.enableHiveSupport()
 				.getOrCreate();
-		
+
 		Properties connectionProperties = new Properties();
 		connectionProperties.put("user", "root");
 		connectionProperties.put("password", "admin");
@@ -34,14 +37,14 @@ public class DatasetJDBCMySql {
 		insert into person values ('Roni', 18);
 		insert into person values ('Jacob', 22);
 		insert into person values ('Simi', 26);*/
-		
+
 		Dataset<Row> jdbcDFUsers = spark.read().jdbc(url, "person",
 				connectionProperties);
 		jdbcDFUsers.printSchema();
 		/*root
 		 |-- name: string (nullable = false)
 		 |-- Age: integer (nullable = true)*/
-		
+
 		jdbcDFUsers.show();
 		/*+------+---+
 		| jenny| 15|
@@ -52,12 +55,12 @@ public class DatasetJDBCMySql {
 		|  Roni| 18|
 		|  Simi| 26|
 		+------+---+*/
-		
+
 		//Moving the person table data to hive
 		//spark.sql("CREATE TABLE IF NOT EXISTS person_hive (name STRING, value int)"); //Not Needed
 		jdbcDFUsers.write().mode(SaveMode.Overwrite).saveAsTable("person_hive");
 		spark.sql("select * from person_hive").show();
-		
+
 		/*+------+---+
 		|  name|Age|
 		+------+---+
@@ -69,7 +72,7 @@ public class DatasetJDBCMySql {
 		|  Roni| 18|
 		|  Simi| 26|
 		+------+---+*/
-		
+
 	}
 
 }

@@ -6,3 +6,4 @@ derby.log
 output/
 spark-warehouse/
 spark-checkpoint/
+metastore_db/

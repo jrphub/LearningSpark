@@ -1,27 +1,17 @@
 package com.tutorial.spark.dataset.encoder;
 
-import java.io.Serializable;
+import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.math.BigInteger;
+
+@Data
 public class Person implements Serializable {
+	@Serial
 	private static final long serialVersionUID = 7907691842801302690L;
 
 	private String name;
-	private int age;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
+	private Long age; //instead of int, use BigInteger or Long as while reading json file, jackson treats int value as Long
 
 }

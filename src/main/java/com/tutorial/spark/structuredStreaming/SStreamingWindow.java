@@ -11,9 +11,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 public class SStreamingWindow {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TimeoutException {
         SparkConf conf = new SparkConf()
                 .setMaster("local[2]")
                 .setAppName("SStreamingWindow");

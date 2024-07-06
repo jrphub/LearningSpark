@@ -24,11 +24,11 @@ public class DatasetJSONtoParquet {
                 .write().mode(SaveMode.Overwrite)
                 .format("parquet")
                 .save(outputParquetPath);
-        
+
         Dataset<Row> sqlDF =
-                spark.sql("SELECT * FROM parquet.`file:///home/jrp/ws_app/Project-Jan-2020/LearningSpark/output/people.parquet`");
+                spark.sql("SELECT * FROM parquet.`output/people.parquet`");
         sqlDF.show();
-        
+
         /*
         +-------+----+
         |   name| age|
@@ -38,7 +38,7 @@ public class DatasetJSONtoParquet {
         | Justin|  19|
         +-------+----+
         */
-        
+
         peopleDF.createOrReplaceTempView("peopleParquet");
         Dataset<Row> sqlDFTwo = spark.sql("select name from peopleParquet where age between 13 and 19");
         sqlDFTwo.show();
@@ -49,11 +49,11 @@ public class DatasetJSONtoParquet {
         |Justin|
         +------+
          */
-        
+
         Dataset<String> sqlDS = sqlDFTwo.map(
                 (MapFunction<Row, String>) row -> "first name : " + row.getAs("name")
                 , Encoders.STRING());
-        
+
         sqlDS.show();
         /*
         +-------------------+
