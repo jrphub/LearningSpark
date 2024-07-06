@@ -8,6 +8,8 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class DatasetHiveSupport {
 
 	public static void main(String[] args) {
 		//String sparkWarehouse = "file:///home/jrp/ws_app/Project-Jan-2020/LearningSpark/spark-warehouse";
-		String sparkWarehouse = new File("file:///home/jrp/ws_app/Project-Jan-2020/LearningSpark/spark-warehouse").getAbsolutePath();
+		String sparkWarehouse = new File("spark-warehouse").getAbsolutePath();
 		SparkConf conf = new SparkConf()
 				.setMaster("local[*]")
 				.setAppName("DatasetHiveSupport")
@@ -35,8 +37,10 @@ public class DatasetHiveSupport {
 		+--------+---------+-----------+
 		| default|      src|      false|
 		+--------+---------+-----------+*/
-		
-		spark.sql("LOAD DATA LOCAL INPATH 'file:///home/jrp/ws_app/Project-Jan-2020/LearningSpark/src/main/resources/kv1.parquet' OVERWRITE INTO TABLE src");
+		File file = new File ("kv1.parquet");
+		System.out.println(file.getAbsolutePath()); //use this path in INPATH
+		//issue : https://issues.apache.org/jira/browse/SPARK-25918
+		spark.sql("LOAD DATA LOCAL INPATH 'file:///Users/jyotiranjanpattnaik/ws_sandbox/LearningSpark/kv1.parquet' OVERWRITE INTO TABLE src");
 
 		spark.sql("select * from src").show();
 		/*+---+-------+
@@ -62,14 +66,14 @@ public class DatasetHiveSupport {
 		+-----+
 		|   12|
 		+-----+*/
-		
+
 		// The results of SQL queries are themselves DataFrames and support all normal functions.
 		Dataset<Row> sqlDF = spark.sql("SELECT key, value FROM src WHERE key < 200 ORDER BY key");
-		
+
 		Dataset<String> srcDS = sqlDF.map((MapFunction<Row, String>) row -> "key :" + row.getAs("key") + ", value : " + row.getAs("value"), Encoders.STRING());
-		
+
 		srcDS.show();
-		
+
 		/*+--------------------+
 		|               value|
 		+--------------------+
@@ -79,7 +83,7 @@ public class DatasetHiveSupport {
 		|key :165, value :...|
 		|key :193, value :...|
 		+--------------------+*/
-		
+
 		// You can also use DataFrames to create temporary views within a SparkSession.
 		List<RecordHive> records = new ArrayList<>();
 		for (int key = 1; key < 100; key++) {

@@ -10,9 +10,10 @@ import org.apache.spark.sql.streaming.StreamingQuery;
 import org.apache.spark.sql.streaming.StreamingQueryException;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeoutException;
 
 public class SStreamingBasic {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TimeoutException {
         SparkConf conf = new SparkConf()
                 .setMaster("local[2]")
                 .setAppName("SStreamingBasic");

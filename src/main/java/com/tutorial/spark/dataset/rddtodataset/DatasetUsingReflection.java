@@ -31,7 +31,7 @@ public class DatasetUsingReflection {
 
                     Person person = new Person();
                     person.setName(cols[0]);
-                    person.setAge(Integer.parseInt(cols[1]));
+                    person.setAge(Long.valueOf(cols[1])); //As jackson reads the int value as Long , hence make the datatype Long in schema
                     return person;
                 });
 
@@ -51,19 +51,19 @@ public class DatasetUsingReflection {
         // So, need to access each field
         // 1. by field index
         System.out.println("Accessing age field by index: age+2");
-        Dataset<Integer> agesByIndex = peopleDF
-                .map((MapFunction<Row, Integer>) row -> {
+        Dataset<Long> agesByIndex = peopleDF
+                .map((MapFunction<Row, Long>) row -> {
                     // lexicographically - age, name
-                    return (int) row.get(0) + 2;
-                }, Encoders.INT());
+                    return (Long)row.get(0) + 2L;
+                }, Encoders.LONG());
 
         agesByIndex.show();
 
         // 2. by column name
         System.out.println("Accessing age field by column name: age+2");
-        Dataset<Integer> agesByColName = peopleDF
-                .map((MapFunction<Row, Integer>) row -> row.<Integer> getAs("age") + 2,
-                        Encoders.INT());
+        Dataset<Long> agesByColName = peopleDF
+                .map((MapFunction<Row, Long>) row -> row.<Long> getAs("age") + 2L,
+                        Encoders.LONG());
 
         agesByColName.show();
 

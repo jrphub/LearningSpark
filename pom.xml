@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spark.version>2.4.5</spark.version>
+        <spark.version>3.5.1</spark.version> <!-- Since feb 2024 -->
         <spark.scala.version>2.12</spark.scala.version>
     </properties>
 
@@ -19,7 +19,20 @@
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_${spark.scala.version}</artifactId>
             <version>${spark.version}</version>
-        </dependency>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-core</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- To fix : ClassNotFoundException com.fasterxml.jackson.core.StreamReadConstraints -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.15.3</version>
+		</dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -27,7 +40,6 @@
             <version>${spark.version}</version>
         </dependency>
 
-        <!-- for hive -->
         <!-- for hive -->
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -53,6 +65,28 @@
             <version>${spark.version}</version>
         </dependency>
 
+		<!-- To fix SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder". issue -->
+		<!-- SLF4J stands for Simple Logging Facade for Java. It provides a simple abstraction of all the logging frameworks.
+		It enables a user to work with any of the logging frameworks
+		such as Log4j, Logback, JUL (java.util.logging), etc. using single dependency.
+
+		This means that you have to provide a concrete java logging library on your classpath on top of the dependency
+		for SLF4J itself - in this project log4j is used.
+
+		You will also need to specify the dependency on your preferred logging library. For instance: slf4j-simple
+		-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>2.0.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+		</dependency>
 
     </dependencies>
 
@@ -63,10 +97,14 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
+			<!--
+			If it's needed to run on command line/cloud, shade jar is needed.
+			For IDE run, not needed
+			-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

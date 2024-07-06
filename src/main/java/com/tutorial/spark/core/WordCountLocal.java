@@ -1,5 +1,7 @@
 package com.tutorial.spark.core;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -9,12 +11,24 @@ import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
 import scala.Tuple2;
 
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Objects;
 
+/**
+ * <li>For Spark application to run with JDK17, this needs to be added in VM option</li>
+ * <code>
+ * --add-exports java.base/sun.nio.ch=ALL-UNNAMED
+ * </code>
+ * <p>Refer : https://stackoverflow.com/questions/73465937/apache-spark-3-3-0-breaks-on-java-17-with-cannot-access-class-sun-nio-ch-direct</p>
+ *
+ * <li>To reflect in all class while running on IDEA, you can add this config in run template as shown below</li>
+ * <a href="https://www.imagebam.com/view/MEUJ3AO" target="_blank"><img src="https://thumbs4.imagebam.com/96/ba/d2/MEUJ3AO_t.png" alt="modify-run-template-idea.png"/></a>
+ */
 public class WordCountLocal {
     public static void main(String[] args) {
-        SparkConf sparkConf = new SparkConf().setAppName("WordCountLocal")
+		SparkConf sparkConf = new SparkConf().setAppName("WordCountLocal")
                 .set("spark.executor.instances", "2")
                 .setMaster("local[*]");
 
@@ -28,15 +42,16 @@ public class WordCountLocal {
 
         //1. get input
         JavaRDD<String> distFile = jsc
-                .textFile(WordCountLocal.class.getClassLoader().getResource("words.txt").getPath());
+                .textFile(Objects.requireNonNull(WordCountLocal.class.getClassLoader().getResource("words.txt")).getPath());
 
         //2. Get collection of all words
         //apple orange grapes apple orange
         JavaRDD<String> flat_words = distFile
                 .flatMap(new FlatMapFunction<String, String>() {
-                    private static final long serialVersionUID = -7303808940135307768L;
+                    @Serial
+					private static final long serialVersionUID = -7303808940135307768L;
 
-                    public Iterator<String> call(String line) throws Exception {
+                    public Iterator<String> call(String line) {
                         return Arrays.asList(line.split(" ")).iterator();
                     }
                 });
@@ -49,12 +64,11 @@ public class WordCountLocal {
         // orange 1
         JavaPairRDD<String, Long> flat_words_mapped = flat_words
                 .mapToPair(new PairFunction<String, String, Long>() {
-                    private static final long serialVersionUID = 373611082594580542L;
+                    @Serial
+					private static final long serialVersionUID = 373611082594580542L;
 
-                    public Tuple2<String, Long> call(String flat_word)
-                            throws Exception {
-                        String var="hello";
-                        return new Tuple2<String, Long>(flat_word, 1L);
+                    public Tuple2<String, Long> call(String flat_word) {
+						return new Tuple2<String, Long>(flat_word, 1L);
                     }
                 });
 
@@ -64,13 +78,13 @@ public class WordCountLocal {
         // grapes 1
         JavaPairRDD<String, Long> flat_words_reduced = flat_words_mapped
                 .reduceByKey(new Function2<Long, Long, Long>() {
-                    private static final long serialVersionUID = -541165998462813301L;
+                    @Serial
+					private static final long serialVersionUID = -541165998462813301L;
 
-                    public Long call(Long l1, Long l2) throws Exception {
+                    public Long call(Long l1, Long l2) {
                         return l1 + l2;
                     }
                 });
-
         // All spark job needs file:// or hdfs:// prefix to distinguish between
         // local and cluster
         flat_words_reduced

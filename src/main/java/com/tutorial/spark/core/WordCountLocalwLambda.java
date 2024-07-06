@@ -12,9 +12,9 @@ import scala.Tuple2;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class WordCountLocalwJava8 {
+public class WordCountLocalwLambda {
     public static void main(String[] args) {
-        String appName="WordCountLocalwJava8";
+        String appName="WordCountLocalwLambda";
         SparkConf sparkConf = new SparkConf().setAppName(appName)
                 .set("spark.executor.instances", "2")
                 .setMaster("local[*]");
@@ -30,7 +30,7 @@ public class WordCountLocalwJava8 {
         //1. get input
         JavaRDD<String> distFile = jsc
                 .textFile(Objects.requireNonNull(
-                        WordCountLocalwJava8.class.getClassLoader().getResource("words.txt")
+                        WordCountLocalwLambda.class.getClassLoader().getResource("words.txt")
                         ).getPath()
                 );
 
