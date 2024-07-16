@@ -3,7 +3,7 @@ target/
 *.iml
 logs/
 derby.log
-output/
+parquet/
 spark-warehouse/
 spark-checkpoint/
 metastore_db/
